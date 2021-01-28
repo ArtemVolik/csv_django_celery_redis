@@ -2,6 +2,5 @@ venv
 *.rdb
 *.sqlite3
 */csv
-media
 .env
 mytest.py
