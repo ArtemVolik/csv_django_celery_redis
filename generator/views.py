@@ -182,7 +182,8 @@ def view_datasets(request, schema_id=None):
                 status=0,
                 schema_id=schema_id)
             config = get_csv_config(Schema, schema_id)
-            write_csv.delay(config, rows, dataset.id)
+            # write_csv.delay(config, rows, dataset.id)
+            write_csv(config, rows, dataset.id)
         return redirect('generator:schema_datasets', schema.id)
 
     return render(request, "datasets.html", context={

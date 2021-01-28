@@ -5,7 +5,7 @@ from django.core.files import File
 from .models import Dataset
 
 
-@app.task
+# @app.task
 def write_csv(config, rows, dataset_id):
     dataset = Dataset.objects.get(pk=dataset_id)
     buffer = io.StringIO()
