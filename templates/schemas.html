@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} Schemas {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="h2-block">
+        <div>
+            <h2 class="page_title">Data Schemas</h2>
+        </div>
+        <div class="empty-div-for-margin"></div>
+        <div><a class="btn btn-success edit-button" href="{% url 'generator:new_schema' %}" role="button">New Schema</a></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Modified</th>
+                    <th>Actions</th>
+                </tr>
+                {% for schema in schemas %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'generator:schema_datasets' schema.id %}" class="text-primary">{{schema.name}}</a></td>
+                    <td>{{schema.modified}}</td>
+                    <td><a href="{% url 'generator:edit_schema' schema.id %}" class="text-primary">Edit Scheme</a>
+                        <a class="text-danger" href="{% url 'generator:delete_schema' schema.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+ .navbar {
+    display: flex;
+    flex-direction: row;
+ }
+ .empty-div-for-margin {
+    flex-grow: 1;
+ }
+ * {
+    font-family: HelveticaNeue;
+    font-size: 16px;
+ }
+ .navbar-brand {
+    margin: 0px 0px 0px -13px;
+    width: 150px;
+ }
+ .nav-item-left {
+    margin: 0px 0px 0px 0px;
+    font-family: HelveticaNeue;
+    font-size: 16px;
+ }
+ .navbar {
+    height: 54px;
+    background: #F7F7F9;
+    border-radius: 4px;
+ }
+
+ .navbar-text {
+    opacity: 50%;
+    margin: 0px 0px 0px 10px;
+ }
+ .h2-block {
+     height: 80px;
+     display: flex;
+     flex-direction: row;
+     align-items:center;
+ }
+ .page_title {
+    margin: 0px 0px 0px 0px;
+    font-size: 24px;
+    vertical-align: middle;
+ }
+
+ th {
+     font-family: HelveticaNeue;
+     font-size: 16px;
+     font-style: normal;
+ }
+ .container {
+     max-width: 1480px;
+ }
+ .edit-button {
+     background: #5CB85C;
+     border-color: #5CB85C;
+ }
+ .form-control-schema {
+     width: 540px;
+     height: 38px;
+ }
+ #submit-schema{
+     display:none;
+ }
+ .form-control-inline {
+     width: 320px;
+     height: 38px;
+     background: #FFFFFF;
+     border: 1px solid #CCCCCC;
+     box-sizing: border-box;
+     border-radius: 4px;
+     margin-right: 20px;
+ }
+ .container-edit {
+     width: 1200px;
+ }
+ .form-inline input[id$='range_to'] {
+     width: 100px;
+     margin: 0px 20px;
+ }
+ .form-inline input[id$='range_from'] {
+     width: 100px;
+ }
+ .form-inline input[id$='order'] {
+     width: 120px;
+ }
+ .form-inline select[id$='type'] {
+     width: 334px;
+
+ }
+
+ .form-inline select {
+     background: #FFFFFF;
+     border: 1px solid #CCCCCC;
+     box-sizing: border-box;
+     border-radius: 4px;
+     height: 38px;
+     margin: 0px 20px;
+ }
+
+ .form-inline input {
+     height: 38px;
+     background: #FFFFFF;
+     border: 1px solid #CCCCCC;
+     box-sizing: border-box;
+     border-radius: 4px;
+     right-margin: 0px 20px;
+
+ }
+
+ .formset input[id$='-name'] {
+     width: 334px;
+ }
+
+ .form-inline label[for$='-DELETE'] {
+     display: inline;
+     float: left;
+     text-align: right;
+     vertical-align: middle;
+     margin: 20px 10px 0px 20px;
+ }
+
+ .form-inline select[id$='-DELETE'] {
+     vertical-align: middle;
+
+ }
+
+ .form-inline input[id$='-DELETE'] {
+     vertical-align: middle;
+     margin: 11px 0px 0px 0px;
+     width: 20px;
+ }
+
+ #rows-quantity {
+     width: 84px;
+     height: 38px;
+     background: #FFFFFF;
+     border: 1px solid #CCCCCC;
+     box-sizing: border-box;
+     border-radius: 4px;
+ }
+ .generate-data {
+     margin: -3px 0px 0px 0px;
+ }
+ .row-ID {
+     width: 10%;
+ }
+ .row-created {
+     width: 30%;
+ }
+ .row-status {
+   width: 30%;
+ }
+ .row-download {
+   width: 30%;
+ }

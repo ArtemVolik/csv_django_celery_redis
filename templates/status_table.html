@@ -1,0 +1,29 @@
+<table id="dataset-table" class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="row-1 row-ID">#</th>
+            <th class="row-2 row-created">Created</th>
+            <th class="row-3 row-status">Status</th>
+            <th class="row-4 row-download">Actions</th>
+        </tr>
+        {% for dataset in datasets %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{dataset.created}}</td>
+            <td>
+                {% if dataset.status%}
+                <div class="badge badge-success">Ready</div>
+                {% else %}
+                <div class="badge badge-secondary">Processing</div>
+                {% endif %}
+            </td>
+            <td>
+                {% if dataset.file %}
+                <a href="{{dataset.file.url}}" class="text-primary">Download</a>
+                {% else %}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </thead>
+</table>

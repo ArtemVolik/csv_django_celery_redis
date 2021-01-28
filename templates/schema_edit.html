@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %} Schema Edit {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="h2-block">
+        <div>
+            {% if schema %}
+            <h1 class="page_title">{{schema.name}}</h1>
+            {% else %}
+            <h1 class="page_title">New Schema</h1>
+            {% endif %}
+        </div>
+        <div class="empty-div-for-margin"></div>
+        <button  type="submit" form="schema" class="btn btn-primary submit-schema-display">
+        Submit
+        </button>
+    </div>
+    <form id="schema" method="post" autocomplete="off" class="form-group">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{form.as_p}}
+        <div class="h2-block">
+            <h2 class="page_title">Schema Columns</h2>
+        </div>
+        <div class="container-edit">
+            <div id="formset" class="form-inline formset">
+                {{ formset.management_form }}
+                {% for column_form in formset.forms %}
+                <div class="inline-form form-inline">{{ column_form.as_p }}</div>
+                {% endfor %}
+            </div>
+            <input value="schema" type="submit" id="submit-schema" class="hidden" />
+        </div>
+    </form>
+    <div>  <input value="Add column" type="submit" form="schema" class="btn btn-primary submit-schema-display" name="add"></div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $("select[name$='-type']").each(function(){
+            $(this).change(function() {
+                let from = $(this).attr('id').replace('-type', '-range_from');
+                let to = $(this).attr('id').replace('-type', '-range_to');
+                if ('i' === $("option:selected", this).val()) {
+                    $("input#" + from + ", label[for=" + from + "]").css('visibility', 'visible');
+                    $("input#" + to + ", label[for=" + to + "]").css('visibility', 'visible');
+                } else {
+                    $("input#" + from + ", label[for=" + from + "]").css('visibility', 'hidden');
+                    $("input#" + to + ", label[for=" + to + "]").css('visibility', 'hidden');
+                }
+            }).change();
+        })
+    });
+</script>
+{% endblock %}

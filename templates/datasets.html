@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %} Schemas {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="h2-block">
+        <div><h2 class="page_title">Data Sets</h2></div>
+        <div class="empty-div-for-margin"></div>
+        <form id="sendRow" method="post" autocomplete="off" class="form-group" action="">
+            {% csrf_token %}
+             <div>
+                 <label for="rows-quantity">Rows:</label>
+                 <input type="number" name="rows" class="inline-form" id="rows-quantity">
+            <button type="submit" value="row" class="btn btn-success generate-data">Generate data</button>
+        </div>
+        </form>
+    </div>
+    <div id="dataset" class="table-responsive">
+        <table id="dataset-table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="row-1 row-ID">#</th>
+                    <th class="row-2 row-created">Created</th>
+                    <th class="row-3 row-status">Status</th>
+                    <th class="row-4 row-download">Actions</th>
+                </tr>
+                {% for dataset in datasets %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{dataset.created}}</td>
+                    <td>{% if dataset.status%}
+                            <div class="badge badge-success">Ready</div>
+                        {% else %}
+                            <div class="badge badge-secondary">Processing</div>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if dataset.file %}
+                         <a href="{{dataset.file.url}}" class="text-primary">Download</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function () {
+    setInterval(function(){
+    $.ajax({
+       url: '',
+       dataType: 'json',
+          success: function(data) {
+          $('#dataset').html(data.rendered_table);
+          }
+    });
+}, 5000)
+});
+</script>
+{% endblock %}
