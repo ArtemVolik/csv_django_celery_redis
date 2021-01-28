@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .csv_generator import get_csv_config
 from .tasks import write_csv
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 
 
