@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from csv_gen.media_storage import MediaStorage
 
 
 class Separator(models.TextChoices):
