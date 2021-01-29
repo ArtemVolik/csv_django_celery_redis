@@ -20,6 +20,6 @@ def write_csv(config, rows, dataset_id):
     file = File(buffer_binary)
     path = f'{config["name"]}_{dataset.id}.csv'
     dataset.file.save(path, file)
-    dataset.status = True
+    dataset.is_ready = True
     dataset.save()
 

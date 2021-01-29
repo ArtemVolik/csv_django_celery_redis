@@ -53,7 +53,7 @@ class Column(models.Model):
 
 class Dataset(models.Model):
     created = models.DateTimeField('Created', default=timezone.now)
-    status = models.BooleanField("Status", default=False)
+    is_ready = models.BooleanField("Dataset status", default=False)
     file = models.FileField("CSV file")
     schema = models.ForeignKey(Schema,
                                related_name='datasets',
