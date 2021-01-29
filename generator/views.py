@@ -99,30 +99,6 @@ def view_datasets(request, schema_id=None):
     datasets = schema.datasets.all()
     form = RowForm()
 
-    if request.method == 'POST':
-        form = RowForm(request.POST)
-        if form.is_valid():
-            rows = form.cleaned_data['rows']
-            dataset = Dataset.objects.create(
-                created=timezone.now(),
-                status=0,
-                schema_id=schema_id)
-            config = get_csv_config(Schema, schema_id)
-            write_csv.delay(config, rows, dataset.id)
-        return redirect('generator:schema_datasets', schema.id)
-
-    return render(request, "datasets.html", context={
-        'datasets': datasets, 'form': form
-    })
-
-
-@login_required
-def view_datasets(request, schema_id=None):
-    user = request.user
-    schema = get_object_or_404(Schema, id=schema_id, user=user)
-    datasets = schema.datasets.all()
-    form = RowForm()
-
     if request.is_ajax() and request.method == 'GET':
         context = {'datasets': datasets}
         rendered_table = render_to_string('status_table.html', context=context)
