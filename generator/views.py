@@ -113,10 +113,10 @@ def view_schema_edit(request, schema_id=None):
         form = SchemaForm(request.POST, instance=schema)
 
         if form.is_valid():
-            form.cleaned_data['modified'] = timezone.now()
-            updated_data = form.cleaned_data
-            schema.__dict__.update(updated_data)
+            schema = form.save(commit=False)
+            schema.modified = timezone.now()
             schema.save()
+
         formset = ColumnFormSet(request.POST, instance=schema)
 
         if formset.is_valid():
