@@ -111,7 +111,7 @@ def view_datasets(request, schema_id=None):
             rows = form.cleaned_data['rows']
             dataset = Dataset.objects.create(
                 created=timezone.now(),
-                status=0,
+                is_ready=0,
                 schema_id=schema_id)
             config = get_csv_config(Schema, schema_id)
             write_csv.delay(config, rows, dataset.id)

@@ -11,7 +11,7 @@
             <td>{{forloop.counter}}</td>
             <td>{{dataset.created}}</td>
             <td>
-                {% if dataset.status%}
+                {% if dataset.is_ready%}
                 <div class="badge badge-success">Ready</div>
                 {% else %}
                 <div class="badge badge-secondary">Processing</div>
