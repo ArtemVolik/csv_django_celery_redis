@@ -1,14 +1,12 @@
 import random
 import string
 import sys
+from faker import Faker
 
 
 def generate_full_name():
-    name_len = random.randint(4, 15)
-    surname_len = random.randint(4, 15)
-    name = ''.join(random.choice(string.ascii_lowercase) for _ in range(name_len)).capitalize()
-    surname = ''.join(random.choice(string.ascii_lowercase) for _ in range(surname_len)).capitalize()
-    return f'{name} {surname}'
+    fake = Faker()
+    return fake.name()
 
 
 def generate_job():

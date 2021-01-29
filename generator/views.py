@@ -1,4 +1,3 @@
-from django import forms
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 from django.contrib.auth import authenticate, login
@@ -11,50 +10,7 @@ from .csv_generator import get_csv_config
 from .tasks import write_csv
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-
-
-class Login(forms.Form):
-    username = forms.CharField(
-        label='', max_length=75, required=True,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control-name',
-            'placeholder': 'Username'
-        })
-    )
-    password = forms.CharField(
-        label='', max_length=75, required=True,
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control-password',
-            'placeholder': 'Password'
-        })
-    )
-
-
-class SchemaForm(forms.ModelForm):
-    class Meta:
-        model = Schema
-        fields = [
-            'name',
-            'column_separator',
-            'string_character'
-        ]
-
-    def __init__(self, *args, **kwargs):
-        super(SchemaForm, self).__init__(*args, **kwargs)
-        for _, f in self.fields.items():
-            f.widget.attrs['class'] = 'form-control form-control-schema'
-
-
-ColumnFormSet = forms.inlineformset_factory(Schema, Column, fields=(
-    'name',
-    'type',
-    'range_from',
-    'range_to',
-    'order',), extra=1, can_delete=True)
-
-
-class RowForm(forms.Form):
-    rows = forms.IntegerField()
+from .forms import Login, SchemaForm, ColumnFormSet, RowForm
 
 
 class LoginView(View):
@@ -182,8 +138,7 @@ def view_datasets(request, schema_id=None):
                 status=0,
                 schema_id=schema_id)
             config = get_csv_config(Schema, schema_id)
-            # write_csv.delay(config, rows, dataset.id)
-            write_csv(config, rows, dataset.id)
+            write_csv.delay(config, rows, dataset.id)
         return redirect('generator:schema_datasets', schema.id)
 
     return render(request, "datasets.html", context={
